@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Dashboard</title>
+</head>
+<body>
+
+    <h1>My Blog Platform</h1>
+
+    <a href="/create-post">Create New Post</a>
+
+    <br><br>
+
+    <h2>All Blog Posts</h2>
+
+    {% for post in posts %}
+    <a href="/edit-post/{{ post._id }}">Edit</a>
+
+<form method="POST" action="/delete-post/{{ post._id }}" style="display:inline;">
+    <button type="submit">Delete</button>
+</form>
+
+<hr>
+
+
+        <div>
+            <h3>{{ post.title }}</h3>
+
+            <p>{{ post.content }}</p>
+
+            <hr>
+        </div>
+
+    {% else %}
+
+        <p>No blog posts available.</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+</body>
+</html>
